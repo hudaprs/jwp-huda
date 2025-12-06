@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+**Deskripsi**
 
-## Getting Started
+Ini adalah aplikasi todo list yang dibuat untuk memenuhi persyaratan BNSP di Widyatama sebagai Junior Web Programmer.
 
-First, run the development server:
+**Preview Aplikasi**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Preview](./screenshots/step-6-final.gif)
+
+**Author**
+
+- **Nama**: Huda Prasetyo
+- **NIM**: 41121200005
+- **Institusi**: Universitas Widyatama
+
+**Fitur**
+
+- **List**: Menampilkan daftar todo yang tersimpan.
+- **Create**: Menambahkan todo baru melalui form.
+- **Update (Check)**: Menandai todo sebagai selesai / belum selesai.
+- **Delete**: Menghapus todo dari daftar.
+- **Filtering By Status**: Memfilter todo berdasarkan status (All / Active / Completed).
+
+**Struktur Folder**
+
+- **`/app`**: Root aplikasi Next.js (route, layout, halaman). File utama berada di `app/page.tsx` dan `app/layout.tsx`.
+- **`/src/components`**: Komponen UI seperti `form.tsx`, `list.tsx`, `list-item.tsx`, dan `filter.tsx`.
+- **`/src/actions`**: Action server-side (mis. `todo.action.ts`) untuk operasi yang berhubungan dengan Prisma.
+- **`/src/libs`**: Utility library, termasuk `prisma.ts` yang mengekspor instance Prisma Client.
+- **`/src/mutations`**: Hooks/custom logic untuk mutation (create, update, remove, clear completed).
+- **`/src/schemas`**: Skema validasi (mis. `todo.schema.ts`) menggunakan `zod`.
+- **`/src/types`**: Tipe TypeScript khusus aplikasi (mis. `todo.type.ts`).
+- **`/src/utils`**: Utilitas kecil seperti `action.util.ts`.
+- **`/prisma`**: Skema Prisma (`schema.prisma`) dan folder migrasi (`/prisma/migrations`). Project ini menggunakan SQLite sebagai database.
+- **`/public`**: Aset publik (gambar, favicon, dll).
+- **Root files**: `package.json`, `tsconfig.json`, `next.config.ts`, dan konfigurasi build seperti `postcss.config.mjs`, `eslint.config.mjs`.
+
+**Menjalankan / Install Aplikasi**
+
+Persyaratan:
+
+- **Runtime**: Bun (direkomendasikan) atau Node.js
+- **Database**: SQLite (terkonfigurasi melalui Prisma)
+- **Bahasa**: TypeScript
+- **Framework**: Next.js v16
+
+Langkah singkat untuk menjalankan secara lokal:
+
+1. Install dependencies
+
+```zsh
+bun install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Generate Prisma Client
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```zsh
+npx prisma generate
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Terapkan migrasi (opsi):
 
-## Learn More
+- Untuk development (menciptakan/melakukan migrate & seeding jika diperlukan):
 
-To learn more about Next.js, take a look at the following resources:
+```zsh
+npx prisma migrate dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Jika Anda hanya ingin menerapkan migrasi yang sudah ada (deploy):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```zsh
+npx prisma migrate deploy
+```
 
-## Deploy on Vercel
+4. Jalankan server development
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```zsh
+bun run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Catatan:
+
+- `package.json` memiliki `postinstall` script `prisma generate`, sehingga setelah `bun install` biasanya Prisma Client otomatis di-generate.
+- Jika Anda menggunakan Node.js/npm, ganti `bun install` dengan `npm install` dan jalankan script dengan `npm run <script>`.
+
+**Konfigurasi Database**
+
+- File konfigurasi Prisma ada di `prisma/schema.prisma`. Secara default project ini menggunakan provider `sqlite` dan menyimpan file database lokal (mis. `dev.db`) di folder yang ditentukan di schema.
