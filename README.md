@@ -2,6 +2,8 @@
 
 Ini adalah aplikasi todo list yang dibuat untuk memenuhi persyaratan BNSP di Widyatama sebagai Junior Web Programmer.
 
+**Bukti-Bukti terdapat di file [Screenshots](https://github.com/hudaprs/jwp-huda/tree/main/screenshots)**
+
 **Preview Aplikasi**
 
 ![Preview](./screenshots/step-6-final.gif)
