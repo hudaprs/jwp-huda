@@ -73,7 +73,9 @@ npx prisma migrate dev
 npx prisma migrate deploy
 ```
 
-4. Jalankan server development
+4. Ganti `.env.example` menjadi `.env`, dan paste kode berikut.
+
+6. Jalankan server development
 
 ```zsh
 bun run dev
